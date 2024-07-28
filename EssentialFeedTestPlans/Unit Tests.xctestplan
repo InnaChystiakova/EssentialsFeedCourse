@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "E3D3E27D-D5B9-4D76-AE33-BD7F7A79C1D2",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:EssentialFeed.xcodeproj",
+        "identifier" : "B34D689D2C5663F6009232D2",
+        "name" : "EssentialFeedTests"
+      }
+    }
+  ],
+  "version" : 1
+}
