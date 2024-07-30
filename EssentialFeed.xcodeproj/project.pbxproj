@@ -78,7 +78,7 @@
 		B34D68842C5663F5009232D2 = {
 			isa = PBXGroup;
 			children = (
-				B34D68BC2C5664B2009232D2 /* EssentialFeedTestPlans */,
+				B34D68C52C59105C009232D2 /* EssentialFeedTestPlans */,
 				B34D688F2C5663F5009232D2 /* EssentialFeed */,
 				B34D68A12C5663F6009232D2 /* EssentialFeedTests */,
 				B34D68AB2C5663F6009232D2 /* EssentialFeedUITests */,
@@ -133,14 +133,13 @@
 			path = EssentialFeedUITests;
 			sourceTree = "<group>";
 		};
-		B34D68BC2C5664B2009232D2 /* EssentialFeedTestPlans */ = {
+		B34D68C52C59105C009232D2 /* EssentialFeedTestPlans */ = {
 			isa = PBXGroup;
 			children = (
 				B34D68BD2C5664E4009232D2 /* Unit Tests.xctestplan */,
 				B34D68BF2C5664F5009232D2 /* Performance Tests.xctestplan */,
 			);
-			name = EssentialFeedTestPlans;
-			path = EssentialFeed/EssentialFeedTestPlans;
+			path = EssentialFeedTestPlans;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
