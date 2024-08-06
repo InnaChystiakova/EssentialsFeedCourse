@@ -36,7 +36,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         var requestedURL: URL?
         
         func get(from url: URL) {
-            var requestedURL = url
+            requestedURL = url
         }
     }
 
