@@ -11,13 +11,15 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     class RemoteFeedLoader {
         private let client: HTTPClient
+        private let url: URL
         
-        public init(client: HTTPClient) {
+        init(url: URL, client: HTTPClient) {
             self.client = client
+            self.url = url
         }
         
         func load() {
-            client.get(from: URL(string: "https://a-url.com")!)        // Step 2: move from property to a method invoke
+            client.get(from: url)        // Step 2: move from property to a method invoke
         }
     }
     
@@ -39,8 +41,9 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
 
     func testInitDoesNotRequestDataFromURL() {
+        let url = URL(string: "https://a-url.com")!
         let client = HTTPClientSpy()                // Step 4: change the shared property to the subclass instance
-        _ = RemoteFeedLoader(client: client)
+        _ = RemoteFeedLoader(url: url, client: client)
         
         XCTAssertNil(client.requestedURL)
     }
@@ -52,11 +55,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
          2. Pass the client to the property after constructor (property injection)
          3. Pass the client as a function parameter (method/dependency injection)
         */
-        let sut = RemoteFeedLoader(client: client)
+        let url = URL(string: "https://a-given-url.com")!
+        let sut = RemoteFeedLoader(url: url, client: client)
         
         sut.load()
         
-        XCTAssertNotNil(client.requestedURL)
+        XCTAssertEqual(client.requestedURL, url)
     }
 
 }
