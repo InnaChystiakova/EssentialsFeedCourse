@@ -13,11 +13,9 @@ final class RemoteFeedLoaderTests: XCTestCase {
     // MARK: - Helpers
     
     private class HTTPClientSpy: HTTPClient {           // Step 3: move the test logic to the new subclass
-        var requestedURL: URL?
         var requestedURLs = [URL]()
         
         func get(from url: URL) {
-            requestedURL = url
             requestedURLs.append(url)
         }
     }
@@ -33,7 +31,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func testInitDoesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
         
-        XCTAssertNil(client.requestedURL)
+        XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func testLoadRequestsDataFromURL() {
@@ -47,7 +45,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         sut.load()
         
-        XCTAssertEqual(client.requestedURL, url)
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func testLoadTwiceRequestsDataFromURLTwice() {
