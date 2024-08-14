@@ -6,30 +6,9 @@
 //
 
 import XCTest
+@testable import EssentialFeed
 
 final class RemoteFeedLoaderTests: XCTestCase {
-    
-    class RemoteFeedLoader {
-        private let client: HTTPClient
-        private let url: URL
-        
-        init(url: URL, client: HTTPClient) {
-            self.client = client
-            self.url = url
-        }
-        
-        func load() {
-            client.get(from: url)        // Step 2: move from property to a method invoke
-        }
-    }
-    
-    protocol HTTPClient {
-        // Step 1: not a singleton anymore
-        // Step 5: remove rpivate initializer, since it is not a singleton anymore
-        // Step 2: assign a parameter instead of a singleton property
-        
-        func get(from url: URL)
-    }
     
     // MARK: - Helpers
     

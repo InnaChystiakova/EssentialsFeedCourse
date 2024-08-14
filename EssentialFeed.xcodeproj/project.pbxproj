@@ -18,6 +18,7 @@
 		B3EFC7B32C622F0B002FE031 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EFC7B22C622F0B002FE031 /* FeedItem.swift */; };
 		B3EFC7B52C622FEF002FE031 /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EFC7B42C622FEF002FE031 /* FeedLoader.swift */; };
 		B3EFC7B82C62459E002FE031 /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EFC7B72C62459E002FE031 /* RemoteFeedLoaderTests.swift */; };
+		B3EFC8662C6CF790002FE031 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3EFC8652C6CF790002FE031 /* RemoteFeedLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		B3EFC7B22C622F0B002FE031 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		B3EFC7B42C622FEF002FE031 /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 		B3EFC7B72C62459E002FE031 /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
+		B3EFC8652C6CF790002FE031 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 		B3EFC7B62C6230F7002FE031 /* FeedFeature */ = {
 			isa = PBXGroup;
 			children = (
+				B3EFC8652C6CF790002FE031 /* RemoteFeedLoader.swift */,
 				B3EFC7B22C622F0B002FE031 /* FeedItem.swift */,
 				B3EFC7B42C622FEF002FE031 /* FeedLoader.swift */,
 			);
@@ -293,6 +296,7 @@
 				B34D68932C5663F5009232D2 /* ContentView.swift in Sources */,
 				B34D68912C5663F5009232D2 /* EssentialFeedApp.swift in Sources */,
 				B3EFC7B52C622FEF002FE031 /* FeedLoader.swift in Sources */,
+				B3EFC8662C6CF790002FE031 /* RemoteFeedLoader.swift in Sources */,
 				B3EFC7B32C622F0B002FE031 /* FeedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
