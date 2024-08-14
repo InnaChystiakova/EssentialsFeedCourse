@@ -12,11 +12,13 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-   private class HTTPClientSpy: HTTPClient {           // Step 3: move the test logic to the new subclass
+    private class HTTPClientSpy: HTTPClient {           // Step 3: move the test logic to the new subclass
         var requestedURL: URL?
+        var requestedURLs = [URL]()
         
         func get(from url: URL) {
             requestedURL = url
+            requestedURLs.append(url)
         }
     }
     
@@ -27,7 +29,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     //MARK: - Tests
-
+    
     func testInitDoesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
         
@@ -39,7 +41,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
          1. Pass the client into the constructor (constructor injection)
          2. Pass the client to the property after constructor (property injection)
          3. Pass the client as a function parameter (method/dependency injection)
-        */
+         */
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
         
@@ -47,5 +49,15 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         XCTAssertEqual(client.requestedURL, url)
     }
-
+    
+    func testLoadTwiceRequestsDataFromURLTwice() {
+        let url = URL(string: "https://a-given-url.com")!
+        let (sut, client) = makeSUT(url: url)
+        
+        sut.load()
+        sut.load()
+        
+        XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
 }
