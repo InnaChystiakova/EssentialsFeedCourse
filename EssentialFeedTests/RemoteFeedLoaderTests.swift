@@ -34,7 +34,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         XCTAssertNil(client.requestedURL)
     }
     
-    func testLoadRequestDataFromURL() {
+    func testLoadRequestsDataFromURL() {
         /*
          1. Pass the client into the constructor (constructor injection)
          2. Pass the client to the property after constructor (property injection)
