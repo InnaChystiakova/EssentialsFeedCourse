@@ -12,7 +12,7 @@ public protocol HTTPClient {
     // Step 5: remove rpivate initializer, since it is not a singleton anymore
     // Step 2: assign a parameter instead of a singleton property
     
-    func get(from url: URL, completion: @escaping (Error) -> Void)
+    func get(from url: URL, completion: @escaping (Error?, HTTPURLResponse?) -> Void)
 }
 
 public final class RemoteFeedLoader {
@@ -21,6 +21,7 @@ public final class RemoteFeedLoader {
     
     public enum Error: Swift.Error {
         case connectivity
+        case invalidData
     }
     
     public init(url: URL, client: HTTPClient) {
@@ -29,8 +30,12 @@ public final class RemoteFeedLoader {
     }
     
     public func load(completion: @escaping (Error) -> Void) {
-        client.get(from: url) { error in         // Step 2: move from property to a method invoke
-            completion(.connectivity)
+        client.get(from: url) { error, response in         // Step 2: move from property to a method invoke
+            if response != nil {
+                completion(.invalidData)
+            } else {
+                completion(.connectivity)
+            }
         }
     }
 }
