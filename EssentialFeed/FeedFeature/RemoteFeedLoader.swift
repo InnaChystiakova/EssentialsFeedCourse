@@ -7,12 +7,17 @@
 
 import Foundation
 
+public enum HTTPClientResult {
+    case success(HTTPURLResponse)
+    case failure(Error)
+}
+
 public protocol HTTPClient {
     // Step 1: not a singleton anymore
     // Step 5: remove rpivate initializer, since it is not a singleton anymore
     // Step 2: assign a parameter instead of a singleton property
     
-    func get(from url: URL, completion: @escaping (Error?, HTTPURLResponse?) -> Void)
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void)
 }
 
 public final class RemoteFeedLoader {
@@ -30,10 +35,11 @@ public final class RemoteFeedLoader {
     }
     
     public func load(completion: @escaping (Error) -> Void) {
-        client.get(from: url) { error, response in         // Step 2: move from property to a method invoke
-            if response != nil {
+        client.get(from: url) { result in         // Step 2: move from property to a method invoke
+            switch result {
+            case .success:
                 completion(.invalidData)
-            } else {
+            case .failure:
                 completion(.connectivity)
             }
         }
