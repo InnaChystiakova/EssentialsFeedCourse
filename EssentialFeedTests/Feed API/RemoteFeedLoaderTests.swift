@@ -65,7 +65,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
             switch (receivedResult, expectedResult) {
                 case let (.success(receivedItems), .success(expectedItems)):
                     XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
-                case let (.failure(receivedError), .failure(expectedError)):
+                case let (.failure(receivedError as RemoteFeedLoader.Error), .failure(expectedError as RemoteFeedLoader.Error)):
                     XCTAssertEqual(receivedError, expectedError, file: file, line: line)
                 default:
                     XCTFail("Expected result \(expectedResult) got \(receivedResult), file: file, line: line")
@@ -134,7 +134,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func testLoadDeliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWith: .failure(.connectivity), when: {
+        expect(sut, toCompleteWith: .failure(RemoteFeedLoader.Error.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
         })
@@ -146,7 +146,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
         
         samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: .failure(.invalidData), when: {
+            expect(sut, toCompleteWith: .failure(RemoteFeedLoader.Error.invalidData), when: {
                 let json = makeItemsJSON([])
                 client.complete(withStatusCode: code, data: json, at: index)
             })
@@ -156,7 +156,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func testLoadDeliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWith: .failure(.invalidData), when: {
+        expect(sut, toCompleteWith: .failure(RemoteFeedLoader.Error.invalidData), when: {
             let invalidJSON = Data()
             client.complete(withStatusCode: 200, data: invalidJSON)
         })
