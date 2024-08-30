@@ -7,6 +7,8 @@
 
 import Foundation
 
+// the protocol to implement different clients that wants to get some data from url and handle the response or error result
+
 public enum HTTPClientResult {
     case success(Data, HTTPURLResponse)
     case failure(Error)

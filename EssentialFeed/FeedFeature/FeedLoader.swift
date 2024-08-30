@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Protocol that can be used by everyone to implement load function and return equitable result with success or failure with any Error
+
 public enum LoadFeedResult<Error: Swift.Error> {
     case success([FeedItem])
     case failure(Error)

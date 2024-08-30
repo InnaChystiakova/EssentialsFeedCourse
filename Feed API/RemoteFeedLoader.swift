@@ -7,7 +7,14 @@
 
 import Foundation
 
-public final class RemoteFeedLoader {
+// we implement the FeedLoader protocol to load FeedItems
+// for this task we have url to go and a client to load items (these can be mocked by Spy in the tests)
+// we implement other abstract class (client protocol) for this purpose
+// and the func load is totaly covered by tests with th get() function from the client
+// also we implement here our type of Errors that conforms to Swift.Error
+// the result type also conforms to the abstract class (protocol)
+
+public final class RemoteFeedLoader: FeedLoader {
     private let url: URL
     private let client: HTTPClient
     
