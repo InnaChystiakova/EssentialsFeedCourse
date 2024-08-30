@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B332D8332C81F715004B38D1 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332D8322C81F715004B38D1 /* HTTPClient.swift */; };
+		B332D8352C81F778004B38D1 /* FeedItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332D8342C81F778004B38D1 /* FeedItemsMapper.swift */; };
 		B34D68912C5663F5009232D2 /* EssentialFeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D68902C5663F5009232D2 /* EssentialFeedApp.swift */; };
 		B34D68932C5663F5009232D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D68922C5663F5009232D2 /* ContentView.swift */; };
 		B34D68952C5663F6009232D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B34D68942C5663F6009232D2 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		B332D8322C81F715004B38D1 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		B332D8342C81F778004B38D1 /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
 		B34D688D2C5663F5009232D2 /* EssentialFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34D68902C5663F5009232D2 /* EssentialFeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialFeedApp.swift; sourceTree = "<group>"; };
 		B34D68922C5663F5009232D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				B3EFC8652C6CF790002FE031 /* RemoteFeedLoader.swift */,
 				B332D8322C81F715004B38D1 /* HTTPClient.swift */,
+				B332D8342C81F778004B38D1 /* FeedItemsMapper.swift */,
 			);
 			path = "Feed API";
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				B34D68932C5663F5009232D2 /* ContentView.swift in Sources */,
 				B34D68912C5663F5009232D2 /* EssentialFeedApp.swift in Sources */,
 				B332D8332C81F715004B38D1 /* HTTPClient.swift in Sources */,
+				B332D8352C81F778004B38D1 /* FeedItemsMapper.swift in Sources */,
 				B3EFC7B52C622FEF002FE031 /* FeedLoader.swift in Sources */,
 				B3EFC8662C6CF790002FE031 /* RemoteFeedLoader.swift in Sources */,
 				B3EFC7B32C622F0B002FE031 /* FeedItem.swift in Sources */,
