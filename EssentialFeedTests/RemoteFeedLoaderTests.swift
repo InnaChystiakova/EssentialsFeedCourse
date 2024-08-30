@@ -69,7 +69,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
         let json = ["items": items]
-        return = try! JSONSerialization.data(withJSONObject: json)
+        return try! JSONSerialization.data(withJSONObject: json)
     }
     
     //MARK: - Tests
