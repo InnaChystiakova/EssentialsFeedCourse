@@ -172,7 +172,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
             id: UUID(),
             description: "a description",
             location: "a location",
-            imageURL: URL(string: "http://a-url.com")!
+                imageURL: URL(string: "http://a-url.com")!
         )
         let items = [item1.model, item2.model]
         
