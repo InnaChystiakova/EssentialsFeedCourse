@@ -69,7 +69,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
           "image": imageURL.absoluteString
         ].compactMapValues { $0 }
         
-        return (item, json)
+            return (item, json)
     }
     
     private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
