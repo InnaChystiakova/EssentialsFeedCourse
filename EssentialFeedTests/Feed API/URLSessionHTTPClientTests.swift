@@ -15,10 +15,14 @@ class URLSessionHTTPClient {
         self.session = session
     }
     
+    struct UnexpectedValuesrepresentation: Error {}
+    
     func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
         session.dataTask(with: url) {_, _, error in
             if let error = error {
                 completion(.failure(error))
+            } else {
+                completion(.failure(UnexpectedValuesrepresentation()))
             }
         }.resume()
     }
@@ -120,27 +124,6 @@ class URLSessionHTTPClientTests: XCTestCase {
     }
         
     //MARK: - Tests
-        
-    func testGetFromURLFailsOnRequestError() {
-        let error = NSError(domain: "domain error", code: 1)
-        
-        URLProtocolStub.stub(data: nil, response: nil, error: error)
-                
-        let exp = expectation(description: "Wait for completion")
-        makeSUT().get(from: anyURL()) { result in
-            switch result {
-            case let .failure(receivedError as NSError):
-                XCTAssertEqual(receivedError.domain, error.domain)
-                XCTAssertEqual(receivedError.code, error.code)
-            default:
-                XCTFail("Expected failure with error \(error), got \(result) instead")
-            }
-            
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
-    }
     
     func testGetFromURLPerformsGETRequestWithURL() {
         let url = anyURL()
@@ -153,6 +136,24 @@ class URLSessionHTTPClientTests: XCTestCase {
         }
         
         makeSUT().get(from: url) { _ in }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func testGetFromURLFailsOnAllNilValues() {
+        URLProtocolStub.stub(data: nil, response: nil, error: nil)
+                
+        let exp = expectation(description: "Wait for completion")
+        makeSUT().get(from: anyURL()) { result in
+            switch result {
+            case .failure:
+                break
+            default:
+                XCTFail("Expected failure, got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
         
         wait(for: [exp], timeout: 1.0)
     }
