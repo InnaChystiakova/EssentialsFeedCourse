@@ -113,14 +113,42 @@ class URLSessionHTTPClientTests: XCTestCase {
         override func stopLoading() { }
     }
     
+    private func anyURL() -> URL {
+        return URL(string: "https://any-url.com")!
+    }
+    
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
-    
-    private func anyURL() -> URL {
-        return URL(string: "https://any-url.com")!
+        
+    private func resultErrorFor(
+        data: Data?,
+        response: URLResponse?,
+        error: Error?,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> Error? {
+        URLProtocolStub.stub(data: data, response: response, error: error)
+        let sut = makeSUT(file: file, line: line)
+        let exp = expectation(description: "Wait for completion")
+        
+        var receivedError: Error?
+        
+        sut.get(from: anyURL()) { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+            default:
+                XCTFail("Expected failure, got \(result) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        return receivedError
     }
         
     //MARK: - Tests
@@ -140,21 +168,24 @@ class URLSessionHTTPClientTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    func testGetFromURLFailsOnAllNilValues() {
-        URLProtocolStub.stub(data: nil, response: nil, error: nil)
-                
-        let exp = expectation(description: "Wait for completion")
-        makeSUT().get(from: anyURL()) { result in
-            switch result {
-            case .failure:
-                break
-            default:
-                XCTFail("Expected failure, got \(result) instead")
-            }
-            
-            exp.fulfill()
-        }
+    func testGetFromURLFailsOnRequestError() {
+        let requestError = NSError(domain: "any error", code: 1)
         
-        wait(for: [exp], timeout: 1.0)
+        /* Variant 1
+        let receivedError = resultErrorFor(data: nil, response: nil, error: requestError) as? NSError
+        XCTAssertEqual(receivedError?.domain, requestError.domain)
+        XCTAssertEqual(receivedError?.code, requestError.code)
+         */
+        
+        //Variant 2
+        let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
+        XCTAssertNotNil(receivedError)
+        
+        // old style, don't use anymore!
+        //XCTAssertEqual(receivedError as NSError?, requestError)
+    }
+    
+    func testGetFromURLFailsOnAllNilValues() {
+        XCTAssertNotNil(resultErrorFor(data: nil, response: nil, error: nil))
     }
 }
