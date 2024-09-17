@@ -25,13 +25,17 @@ class URLSessionHTTPClient {
 }
 class URLSessionHTTPClientTests: XCTestCase {
 
-//    override func setUpWithError() throws {
-//        // Put setup code here. This method is called before the invocation of each test method in the class.
-//    }
-//
-//    override func tearDownWithError() throws {
-//        // Put teardown code here. This method is called after the invocation of each test method in the class.
-//    }
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        
+        URLProtocolStub.startInterceptingRequests()
+    }
+
+    override func tearDownWithError() throws {
+        try super.tearDownWithError()
+        
+        URLProtocolStub.stopInterceptingRequests()
+    }
 //
 //    func testExample() throws {
 //        // This is an example of a functional test case.
@@ -108,8 +112,6 @@ class URLSessionHTTPClientTests: XCTestCase {
     //MARK: - Tests
         
     func testGetFromURLFailsOnRequestError() {
-        URLProtocolStub.startInterceptingRequests()
-        
         let url = URL(string: "https://any-url.com")!
         let error = NSError(domain: "domain error", code: 1)
         
@@ -131,12 +133,9 @@ class URLSessionHTTPClientTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
-        URLProtocolStub.stopInterceptingRequests()
     }
     
     func testGetFromURLPerformsGETRequestWithURL() {
-        URLProtocolStub.startInterceptingRequests()
-        
         let url = URL(string: "https://any-url.com")!
         let exp = expectation(description: "Wait for requset")
 
@@ -149,6 +148,5 @@ class URLSessionHTTPClientTests: XCTestCase {
         URLSessionHTTPClient().get(from: url) { _ in }
         
         wait(for: [exp], timeout: 1.0)
-        URLProtocolStub.stopInterceptingRequests()
     }
 }
