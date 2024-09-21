@@ -64,8 +64,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
         return URL(string: "https://url-\(index+1).com")!
     }
     
-    // MARK: - Tests
-    func testEndToEndServerGETFeedResultMatchesFixedTestAccountData() {
+    private func getFeedResult() -> LoadFeedResult? {
         let testServerURL = URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
         let client = URLSessionHTTPClient()
         let loader = RemoteFeedLoader(url: testServerURL, client: client)
@@ -78,8 +77,14 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
             exp.fulfill()
         }
         wait(for: [exp], timeout: 5.0)
+
+        return receivedResult
+    }
+    
+    // MARK: - Tests
+    func testEndToEndServerGETFeedResultMatchesFixedTestAccountData() {
         
-        switch receivedResult {
+        switch getFeedResult() {
         case let .success(items)?:
             XCTAssertEqual(items.count, 8, "Expected 8 items in the test account feed")
             
