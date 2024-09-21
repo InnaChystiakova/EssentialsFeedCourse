@@ -36,6 +36,9 @@
          <TestPlanReference
             reference = "container:EssentialFeedTestPlans/Performance Tests.xctestplan">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:EssentialFeedTestPlans/EssentialFeedAPIEndToEndTests.xctestplan">
+         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
@@ -57,6 +60,17 @@
                BlueprintIdentifier = "B34D68A72C5663F6009232D2"
                BuildableName = "EssentialFeedUITests.xctest"
                BlueprintName = "EssentialFeedUITests"
+               ReferencedContainer = "container:EssentialFeed.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B3920CF82C9DBD320059A54E"
+               BuildableName = "EssentialFeedAPIEndToEndTests.xctest"
+               BlueprintName = "EssentialFeedAPIEndToEndTests"
                ReferencedContainer = "container:EssentialFeed.xcodeproj">
             </BuildableReference>
          </TestableReference>
