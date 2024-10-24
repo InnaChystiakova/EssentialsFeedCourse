@@ -10,27 +10,31 @@ import Foundation
 internal final class FeedItemsMapper {
     
     private struct Root: Decodable {
-        let items: [Item]
+        let items: [Item]               // decodes array of items from original JSON
         
         var feed: [FeedItem] {
-            return items.map { $0.item }
+            return items.map { $0.item }        // takes array of items, prepared from JSON, and maps them into array of Entity items
         }
     }
 
+    // private structure that duplicates the Entity
+    
     private struct Item: Decodable {
         let id: UUID
         let description: String?
         let location: String?
         let image: URL                  // keep the name as in the original JSON key
         
-        // convert to the high level struct, where original keys are semantically clear
-        
+        // convert to the high level struct (Entity), where original keys are semantically clear
+        // returns the Entity item, created with passed data
         var item: FeedItem {
             return FeedItem(id: id, description: description, location: location, imageURL: image)
         }
     }
     
     private static var OK_200: Int { return 200 }
+    
+    // map function overload
     
     internal static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteFeedLoader.Result {
         guard response.statusCode == OK_200,
