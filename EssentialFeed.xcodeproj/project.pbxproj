@@ -148,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				B34D688F2C5663F5009232D2 /* EssentialFeed */,
-				B332D8312C81F6F6004B38D1 /* Feed API */,
 				B34D68C52C59105C009232D2 /* EssentialFeedTestPlans */,
 				B34D68A12C5663F6009232D2 /* EssentialFeedTests */,
 				B3920D0D2C9DDF180059A54E /* EssentialFeedAPIEndToEndTests */,
@@ -176,8 +175,9 @@
 				B34D68922C5663F5009232D2 /* ContentView.swift */,
 				B34D68942C5663F6009232D2 /* Assets.xcassets */,
 				B34D68992C5663F6009232D2 /* EssentialFeed.entitlements */,
-				B34D68962C5663F6009232D2 /* Preview Content */,
 				B3EFC7B62C6230F7002FE031 /* FeedFeature */,
+				B332D8312C81F6F6004B38D1 /* Feed API */,
+				B34D68962C5663F6009232D2 /* Preview Content */,
 			);
 			path = EssentialFeed;
 			sourceTree = "<group>";
