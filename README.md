@@ -50,6 +50,7 @@ Then the app should display an error message
 
 ## Use Cases
 
+
 ### Load Feed From Remote Use Case
 
 #### Data:
@@ -69,6 +70,7 @@ Then the app should display an error message
 1. System deletes the cache.
 2. System delivers connectivity error.
 
+
 ### Load Feed From Cache Use Case
 
 #### Primary course:
@@ -79,12 +81,27 @@ Then the app should display an error message
 5. System delivers image feed.
 
 #### Retrieval error course (sad path):
+1. System delivers error.
+
+#### Expired cache course (sad path): 
+1. System delivers no feed images.
+
+#### Empty cache course (sad path): 
+1. System delivers no feed images.
+
+
+### Validate Feed Cache Use Case
+
+#### Primary course:
+1. Execute "Validate Cache" command with above data.
+2. System retrieves feed data from cache.
+3. System validates cache is less then seven days old.
+
+#### Retrieval error course (sad path):
 1. System deletes the cache
-2. System delivers error.
 
 #### Expired cache course (sad path): 
 1. System deletes cache.
-2. System delivers no feed image.
 
 #### Empty cache course (sad path): 
 1. System delivers no feed images.
@@ -103,10 +120,10 @@ Then the app should display an error message
 5. System saves old cache data.
 6. System delivers success message.
 
-####Deleting error course (sad path):
+#### Deleting error course (sad path):
 1. System delivers the error.
 
-####Saving error course (sad path):
+#### Saving error course (sad path):
 1. System delivers the error.
 
 ## Flowchart
