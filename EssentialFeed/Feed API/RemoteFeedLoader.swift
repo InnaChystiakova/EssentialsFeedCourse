@@ -7,7 +7,7 @@
 
 import Foundation
 
-// we implement the FeedLoader protocol to load FeedItems
+// we implement the FeedLoader protocol to load FeedImage
 // for this task we have url to go and a client to load items (these can be mocked by Spy in the tests)
 // we implement other abstract class (client protocol) for this purpose
 // and the func load is totaly covered by tests with th get() function from the client
@@ -54,7 +54,7 @@ public final class RemoteFeedLoader: FeedLoader {
 }
 
 private extension Array where Element == RemoteFeedItem {
-    func toModels() -> [FeedItem] {
-        return map { FeedItem(id: $0.id, description: $0.description, location: $0.location, imageURL: $0.image) }
+    func toModels() -> [FeedImage] {
+        return map { FeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.image) }
     }
 }
