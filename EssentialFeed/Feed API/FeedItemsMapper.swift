@@ -7,15 +7,6 @@
 
 import Foundation
 
-// internal structure that duplicates the Entity
-
-internal struct RemoteFeedItem: Decodable {
-    internal let id: UUID
-    internal let description: String?
-    internal let location: String?
-    internal let image: URL                  // keep the name as in the original JSON key
-}
-
 internal final class FeedItemsMapper {
     
     private struct Root: Decodable {
