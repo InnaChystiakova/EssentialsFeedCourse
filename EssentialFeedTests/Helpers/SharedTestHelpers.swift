@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import EssentialFeed
+@testable import EssentialFeedFramework
 
 func anyNSError() -> NSError {
     return NSError(domain: "any error", code: 0)

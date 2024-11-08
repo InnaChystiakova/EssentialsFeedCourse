@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import EssentialFeed
+@testable import EssentialFeedFramework
 
 class FeedStoreSpy: FeedStore {
     enum ReceivedMessage: Equatable {

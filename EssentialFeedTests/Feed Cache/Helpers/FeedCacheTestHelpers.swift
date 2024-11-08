@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import EssentialFeed
+@testable import EssentialFeedFramework
 
 func uniqueImage() -> FeedImage {
     return FeedImage(id: UUID(), description: "any", location: "nay", url: anyURL())

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import EssentialFeed
+@testable import EssentialFeedFramework
 
 class CodableFeedStore {
     private struct Cache: Codable {
