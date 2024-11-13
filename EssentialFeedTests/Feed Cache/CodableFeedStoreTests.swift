@@ -8,7 +8,9 @@
 import XCTest
 @testable import EssentialFeedFramework
 
-final class CodableFeedStoreTests: XCTestCase {
+typealias FailableFeedStoreSpecs = FailableRetrieveFeedStoreSpecs & FailableInsertFeedStoreSpecs & FailableDeleteFeedStoreSpecs
+
+final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
     
     override func setUp() {
         super.setUp()
@@ -137,7 +139,7 @@ final class CodableFeedStoreTests: XCTestCase {
         expect(sut, toRetrieve: .empty)
     }
     
-    func testDeliversNoErrorOnNonEmptyCache() {
+    func testDeleteDeliversNoErrorOnNonEmptyCache() {
         let sut = makeSUT()
         insert((uniqueImageFeed().local, Date()), to: sut)
         
