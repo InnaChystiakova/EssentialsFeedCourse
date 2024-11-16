@@ -8,9 +8,27 @@
 import XCTest
 import EssentialFeedFramework
 
+class CoreDataFeedStore: FeedStore {
+    public init() {}
+    
+    func retrieve(completion: @escaping RetrievalCompletion) {
+        completion(.empty)
+    }
+    
+    func insert(_ feed: [EssentialFeedFramework.LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
+        
+    }
+    
+    func deleteCachedFeed(completion: @escaping DeletionCompletion) {
+        
+    }
+}
+
 class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     func testRetrieveDeliversEmptyOnEmptyCache() {
+        let sut = CoreDataFeedStore()
         
+        assertThatRetrieveDeliversEmptyOnEmptyCache(sut)
     }
     
     func testRetrieveHasNoSideEffectsOnEmptyCache() {
@@ -55,5 +73,13 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     
     func testStoreSideEffectsRunSerially() {
         
+    }
+    
+    //MARK: -Helpers
+    
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> FeedStore {
+        let sut = CoreDataFeedStore()
+        trackForMemoryLeaks(sut, file: file, line: line)
+        return sut
     }
 }
