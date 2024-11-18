@@ -9,6 +9,18 @@ import XCTest
 import EssentialFeedFramework
 
 class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
+    override func setUp() {
+        super.setUp()
+        
+        setupEmptyStoreState()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        
+        undoStoreSideEffects()
+    }
+    
     func testRetrieveDeliversEmptyOnEmptyCache() {
         let sut = makeSUT()
         
@@ -22,7 +34,9 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     }
     
     func testRetrieveDeliversFoundValuesOnNonEmptyCache() {
+        let sut = makeSUT()
         
+        assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(sut)
     }
     
     func testRetrieveHasNoSideEffectsOnNonEmptyCache() {
@@ -65,9 +79,27 @@ class CoreDataFeedStoreTests: XCTestCase, FeedStoreSpecs {
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> FeedStore {
         let storeBundle = Bundle(for: CoreDataFeedStore.self)
-        let storeURL = URL(fileURLWithPath: "dev/null")
+        let storeURL = uniqueTestSpecificStoreURL()//URL(fileURLWithPath: "dev/null")
         let sut = try! CoreDataFeedStore(storeURL: storeURL, bundle: storeBundle)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func setupEmptyStoreState() {
+        deleteStoreArtifacts()
+    }
+    
+    private func undoStoreSideEffects() {
+        deleteStoreArtifacts()
+    }
+    
+    private func deleteStoreArtifacts() {
+        try? FileManager.default.removeItem(at: uniqueTestSpecificStoreURL())
+    }
+    
+    private func uniqueTestSpecificStoreURL() -> URL {
+        let manager = FileManager.default
+        let dir = manager.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        return dir.appendingPathComponent((UUID().uuidString))
     }
 }
