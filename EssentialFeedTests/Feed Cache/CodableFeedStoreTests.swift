@@ -139,7 +139,7 @@ final class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
     func testStoreSideEffectsRunSerially() {
         let sut = makeSUT()
         
-        assertThatSideEffectsRunSerially(sut)
+        assertThatSideEffectsRunSerially(on: sut)
     }
     
     // MARK: -Helpers
