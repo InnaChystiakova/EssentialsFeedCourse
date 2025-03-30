@@ -25,19 +25,7 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
     func testLoadDeliversNoItemsOnEmptyCache() {
         let sut = makeSUT()
         
-        let exp = expectation(description: "Wait for load completion")
-        sut.load { result in
-            switch result {
-            case .success(let imageFeed):
-                XCTAssertEqual(imageFeed, [], "Expected empty feed")
-            case .failure(let error):
-                XCTFail("Expected successful feed result, got \(error) instead")
-            @unknown default:
-                XCTFail("Unknown enum case")
-            }
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        expect(sut, toLoad: [])
     }
     
     func testLoadDeliversItemsSavedOnASeparateInstance() {
@@ -52,19 +40,7 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
         }
         wait(for: [saveExp], timeout: 1.0)
         
-        let loadExp = expectation(description: "Wait for load completion")
-        sutToPerformLoad.load() { loadResult in
-            switch loadResult {
-            case .success(let imageFeed):
-                XCTAssertEqual(imageFeed, feed, "Expected saved feed")
-            case .failure(let error):
-                XCTFail("Expected successful feed result, got \(error) instead")
-            @unknown default:
-                XCTFail("Unknown enum case")
-            }
-            loadExp.fulfill()
-        }
-        wait(for: [loadExp], timeout: 1.0)
+        expect(sutToPerformLoad, toLoad: feed)
     }
 
     // MARK: -Helpers
@@ -77,6 +53,22 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func expect(_ sut: LocalFeedLoader, toLoad expectedFeed: [FeedImage], file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for load completion")
+        sut.load { result in
+            switch result {
+            case .success(let loadedFeed):
+                XCTAssertEqual(loadedFeed, expectedFeed, file: file, line: line)
+            case .failure(let error):
+                XCTFail("Expected successful feed result, got \(error) instead")
+            @unknown default:
+                XCTFail("Unknown enum case")
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func setupEmptyStoreState() {
