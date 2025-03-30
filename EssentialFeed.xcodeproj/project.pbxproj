@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B30D93472D99A9690087082B /* EssentialFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35BC9EF2CDE40A800105FF1 /* EssentialFeedFramework.framework */; };
+		B31D5F1A2D99AE1C00102488 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3920CF02C99C6370059A54E /* XCTestCase+MemoryLeakTracking.swift */; };
 		B320A9F62CCA7A97006874F1 /* CacheFeedUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B320A9F52CCA7A97006874F1 /* CacheFeedUseCaseTests.swift */; };
 		B32A12772CE4B69600770496 /* FeedStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A12762CE4B69600770496 /* FeedStoreSpecs.swift */; };
 		B32A12792CE4B75100770496 /* XCTestCase+FeedStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A12782CE4B75100770496 /* XCTestCase+FeedStoreSpecs.swift */; };
@@ -80,7 +81,7 @@
 		B32A12B32CE918BF00770496 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"EssentialFeed/Feed Cache/Insrastructure/CoreData/FeedStore.xcdatamodeld",
+				"EssentialFeed/Feed Cache/Infrastructure/CoreData/FeedStore.xcdatamodeld",
 			);
 			target = B34D689D2C5663F6009232D2 /* EssentialFeedTests */;
 		};
@@ -464,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B31D5F1A2D99AE1C00102488 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
