@@ -9,8 +9,8 @@ import Foundation
 
 // Protocol that can be used by everyone to implement load function and return equitable result with success or failure with any Error
 
-public typealias LoadFeedResult = Result<[FeedImage], Error>
-
 public protocol FeedLoader {
-    func load(completion: @escaping(LoadFeedResult)-> Void)
+    typealias Result = Swift.Result<[FeedImage], Error>
+    
+    func load(completion: @escaping(Result)-> Void)
 }
