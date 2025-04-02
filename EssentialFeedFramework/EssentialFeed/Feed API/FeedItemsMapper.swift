@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal final class FeedItemsMapper {
+final class FeedItemsMapper {
     
     private struct Root: Decodable {
         let items: [RemoteFeedItem]               // decodes array of items from original JSON
@@ -17,7 +17,7 @@ internal final class FeedItemsMapper {
     
     // map function overload
     
-    internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteFeedItem] {
+    static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteFeedItem] {
         guard response.statusCode == OK_200,
               let root = try? JSONDecoder().decode(Root.self, from: data)
         else {

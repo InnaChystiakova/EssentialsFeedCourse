@@ -7,11 +7,11 @@
 
 import Foundation
 
-// internal structure that duplicates the Entity
+//  structure that duplicates the Entity
 
-internal struct RemoteFeedItem: Decodable {
-    internal let id: UUID
-    internal let description: String?
-    internal let location: String?
-    internal let image: URL                  // keep the name as in the original JSON key
+ struct RemoteFeedItem: Decodable {
+     let id: UUID
+     let description: String?
+     let location: String?
+     let image: URL                  // keep the name as in the original JSON key
 }
