@@ -9,10 +9,7 @@ import Foundation
 
 // Protocol that can be used by everyone to implement load function and return equitable result with success or failure with any Error
 
-public enum LoadFeedResult {
-    case success([FeedImage])
-    case failure(Error)
-}
+public typealias LoadFeedResult = Result<[FeedImage], Error>
 
 public protocol FeedLoader {
     func load(completion: @escaping(LoadFeedResult)-> Void)
