@@ -85,6 +85,7 @@
 		B3A4F3A72DA050BC00FA35DC /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A4F3B02DA050BD00FA35DC /* EssentialFeediOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeediOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3A4F3BF2DA0527F00FA35DC /* EssentialFeediOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EssentialFeediOS.xctestplan; sourceTree = "<group>"; };
+		B3A4F3C02DA0550000FA35DC /* CI_iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI_iOS.xctestplan; sourceTree = "<group>"; };
 		B3EFC7B72C62459E002FE031 /* LoadFeedFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,6 +207,7 @@
 		B34D68842C5663F5009232D2 = {
 			isa = PBXGroup;
 			children = (
+				B3A4F3C02DA0550000FA35DC /* CI_iOS.xctestplan */,
 				B3A4F3BF2DA0527F00FA35DC /* EssentialFeediOS.xctestplan */,
 				B35BC9F02CDE40A800105FF1 /* EssentialFeedFramework */,
 				B34D68C52C59105C009232D2 /* EssentialFeedTestPlans */,

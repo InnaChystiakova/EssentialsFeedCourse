@@ -24,13 +24,6 @@
     {
       "target" : {
         "containerPath" : "container:EssentialFeed.xcodeproj",
-        "identifier" : "B3A4F3AF2DA050BD00FA35DC",
-        "name" : "EssentialFeediOSTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:EssentialFeed.xcodeproj",
         "identifier" : "B34D689D2C5663F6009232D2",
         "name" : "EssentialFeedTests"
       }
