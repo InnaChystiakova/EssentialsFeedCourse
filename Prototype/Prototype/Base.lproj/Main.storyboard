@@ -104,10 +104,10 @@ Description Description Description </string>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="eJo-nv-b14" firstAttribute="leading" secondItem="1TC-7D-y7f" secondAttribute="leadingMargin" id="GPt-IH-jqK"/>
-                                        <constraint firstItem="eJo-nv-b14" firstAttribute="trailing" secondItem="1TC-7D-y7f" secondAttribute="trailingMargin" id="Uxe-XJ-cq5"/>
+                                        <constraint firstItem="eJo-nv-b14" firstAttribute="trailing" secondItem="1TC-7D-y7f" secondAttribute="trailingMargin" id="E6p-0S-kyD"/>
                                         <constraint firstItem="eJo-nv-b14" firstAttribute="top" secondItem="1TC-7D-y7f" secondAttribute="topMargin" priority="999" constant="6" id="Vwl-cx-0vd"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="eJo-nv-b14" secondAttribute="bottom" priority="999" constant="6" id="kDd-eI-JbY"/>
+                                        <constraint firstItem="eJo-nv-b14" firstAttribute="leading" secondItem="1TC-7D-y7f" secondAttribute="leadingMargin" id="nuo-Gu-H75"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
