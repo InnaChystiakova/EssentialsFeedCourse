@@ -75,9 +75,8 @@ final class FeedViewControllerTests: XCTestCase {
     func testViewDidLoadShowsLoadingIndicator() {
         let (sut, _) = makeSUT()
                 
-        let window = UIWindow()
-        window.rootViewController = sut
-        window.makeKeyAndVisible()
+        makeRootViewController(with: sut)
+        
         XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
     }
     
@@ -91,14 +90,14 @@ final class FeedViewControllerTests: XCTestCase {
     }
     
     func testPullToRefreshShowsLoadingIndicator() {
-        let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
+        let (sut, _) = makeSUT()
         
+        makeRootViewController(with: sut)
         sut.refreshControl?.simulatePullToRefresh()
-        loader.completeFeedLoading()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
     }
+
 
     // MARK: - Helpers
     
@@ -108,6 +107,12 @@ final class FeedViewControllerTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
+    }
+    
+    private func makeRootViewController(with sut: FeedViewController) {
+        let window = UIWindow()
+        window.rootViewController = sut
+        window.makeKeyAndVisible()
     }
     
     class LoaderSpy: FeedLoader {
