@@ -11,6 +11,7 @@ import EssentialFeedFramework
 
 final class FeedViewController: UITableViewController {
     private var loader: FeedLoader?
+    private var onViewIsAppearing: ((FeedViewController) -> Void)?
     
     convenience init(loader: FeedLoader) {
         self.init()
@@ -22,7 +23,19 @@ final class FeedViewController: UITableViewController {
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
+        
+        onViewIsAppearing = { [weak self] vc in
+            self?.refreshControl?.beginRefreshing()
+            vc.onViewIsAppearing = nil
+        }
+        
         load()
+    }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        onViewIsAppearing?(self)
     }
     
     @objc private func load() {
@@ -56,6 +69,15 @@ final class FeedViewControllerTests: XCTestCase {
         sut.refreshControl?.simulatePullToRefresh()
         XCTAssertEqual(loader.loadCallCount, 3)
     }
+    
+    func testViewDidLoadShowsLoadingIndicator() {
+        let (sut, _) = makeSUT()
+                
+        let window = UIWindow()
+        window.rootViewController = sut
+        window.makeKeyAndVisible()
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+}
 
     // MARK: - Helpers
     
