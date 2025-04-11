@@ -127,6 +127,7 @@ Description Description Description </string>
                         <connections>
                             <outlet property="dataSource" destination="sy9-hx-fA0" id="MAD-AY-jEy"/>
                             <outlet property="delegate" destination="sy9-hx-fA0" id="6DD-dp-gBC"/>
+                            <outlet property="prefetchDataSource" destination="sy9-hx-fA0" id="icZ-mB-P4i"/>
                         </connections>
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="5YX-mb-XoH">
