@@ -14,17 +14,7 @@ protocol FeedViewControllerDelegate {
 final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, FeedLoadingView {
     var delegate: FeedViewControllerDelegate?
     
-    var tableModel = [FeedImageCellController]() {
-        didSet {
-            if Thread.isMainThread {
-                tableView.reloadData()
-            } else {
-                DispatchQueue.main.async() { [weak self] in
-                    self?.tableView.reloadData()
-                }
-            }
-        }
-    }
+    var tableModel = [FeedImageCellController]() { didSet { tableView.reloadData() } }
     private var onViewIsAppearing: (() -> Void)?
     
     public override func viewDidLoad() {
@@ -48,11 +38,6 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
     }
     
     func display(_ viewModel: FeedLoadingViewModel) {
-        guard Thread.isMainThread else {
-            return DispatchQueue.main.async { [weak self] in
-                self?.display(viewModel)
-            }
-        }
         if viewModel.isLoading { refreshControl?.beginRefreshing() }
         else { refreshControl?.endRefreshing() }
     }
