@@ -11,6 +11,14 @@ import EssentialFeedFramework
 import EssentialFeediOS
 
 final class FeedViewControllerTests: XCTestCase {
+    
+    func testFeedViewHasTitle() {
+        let (sut, _ ) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.title, "My Feed")
+    }
 
     func testLoadFeedActionsRequestFeedFromLoader() {
         let (sut, loader) = makeSUT()

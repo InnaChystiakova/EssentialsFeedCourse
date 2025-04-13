@@ -24,6 +24,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
             self?.refreshControl?.beginRefreshing()
         }
         
+        title = "My Feed"
         refresh()
     }
     
