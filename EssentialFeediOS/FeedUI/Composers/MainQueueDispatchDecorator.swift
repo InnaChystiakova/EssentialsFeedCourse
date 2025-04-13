@@ -1,5 +1,5 @@
 //
-//  MainQueueDecorator.swift
+//  MainQueueDispatchDecorator.swift
 //  EssentialFeed
 //
 //  Created by Inna Chystiakova on 13/04/2025.
