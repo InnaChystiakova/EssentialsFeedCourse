@@ -504,6 +504,7 @@
 				en,
 				Base,
 				"pt-BR",
+				el,
 			);
 			mainGroup = B34D68842C5663F5009232D2;
 			productRefGroup = B34D688E2C5663F5009232D2 /* Products */;
