@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import EssentialFeedFramework
 
 protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
@@ -38,7 +39,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
         onViewIsAppearing?()
     }
     
-    func display(_ viewModel: FeedLoadingViewModel) {
+    public func display(_ viewModel: FeedLoadingViewModel) {
         refreshControl?.update(isRefreshing: viewModel.isLoading)
     }
         
@@ -72,7 +73,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
         cellController(forRowAt: indexPath).cancelLoad()
     }
     
-    func display(_ viewModel: FeedErrorViewModel) {
+    public func display(_ viewModel: FeedErrorViewModel) {
         errorView?.message = viewModel.message
     }
 }
