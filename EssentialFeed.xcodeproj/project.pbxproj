@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B30037252DB56805004E5C25 /* FeedPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30037242DB567FD004E5C25 /* FeedPresenterTests.swift */; };
+		B300372A2DB573A6004E5C25 /* Feed.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B30037292DB573A6004E5C25 /* Feed.xcstrings */; };
 		B30D93472D99A9690087082B /* EssentialFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B35BC9EF2CDE40A800105FF1 /* EssentialFeedFramework.framework */; };
 		B31D5F1A2D99AE1C00102488 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3920CF02C99C6370059A54E /* XCTestCase+MemoryLeakTracking.swift */; };
 		B31D5F1D2D99B4F200102488 /* FeedCacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35BC9402CD4240200105FF1 /* FeedCacheTestHelpers.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		B30037242DB567FD004E5C25 /* FeedPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenterTests.swift; sourceTree = "<group>"; };
+		B30037292DB573A6004E5C25 /* Feed.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Feed.xcstrings; sourceTree = "<group>"; };
 		B30D93432D99A9690087082B /* EssentialFeedCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B320A9F52CCA7A97006874F1 /* CacheFeedUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedUseCaseTests.swift; sourceTree = "<group>"; };
 		B32A12762CE4B69600770496 /* FeedStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreSpecs.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				B30037242DB567FD004E5C25 /* FeedPresenterTests.swift */,
+				B30037292DB573A6004E5C25 /* Feed.xcstrings */,
 			);
 			path = "Feed Presentation";
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B300372A2DB573A6004E5C25 /* Feed.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
