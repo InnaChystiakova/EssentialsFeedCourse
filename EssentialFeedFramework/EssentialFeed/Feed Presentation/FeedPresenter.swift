@@ -22,10 +22,6 @@ public struct FeedLoadingViewModel {
     public let isLoading: Bool
 }
 
-public struct FeedViewModel {
-    public let feed: [FeedImage]
-}
-
 public protocol FeedErrorView {
     func display(_ viewModel: FeedErrorViewModel)
 }
