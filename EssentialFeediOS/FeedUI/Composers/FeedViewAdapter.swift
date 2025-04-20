@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import EssentialFeedFramework
+@testable import EssentialFeedFramework
 
 final class FeedViewAdapter: FeedView {
     private weak var controller: FeedViewController?
