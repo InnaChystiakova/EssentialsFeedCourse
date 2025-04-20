@@ -264,7 +264,7 @@ final class FeedUIIntegrationTests: XCTestCase {
     func testLoadFeedCompletionDispatchesFromBackgroundToMainThread() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
-                
+        
         let exp = self.expectation(description: "Wait for background queue")
         
         DispatchQueue.global(qos: .userInitiated).async {
@@ -292,12 +292,23 @@ final class FeedUIIntegrationTests: XCTestCase {
     }
     
     func test_errorView_doesNotRenderErrorOnLoad() {
-            let (sut, _) = makeSUT()
-
-            sut.loadViewIfNeeded()
-
-            XCTAssertEqual(sut.errorMessage, nil)
-        }
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.errorMessage, nil)
+    }
+    
+    func test_loadFeedCompletion_rendersErrorMessageOnError() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.errorMessage, nil)
+        
+        loader.completeFeedLoadingWithError(at: 0)
+        XCTAssertEqual(sut.errorMessage, localized("FEED_VIEW_CONNECTION_ERROR"))
+    }
     
     // MARK: - Helpers
     
