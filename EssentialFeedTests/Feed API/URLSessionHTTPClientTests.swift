@@ -10,16 +10,10 @@ import XCTest
 
 class URLSessionHTTPClientTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        
-        URLProtocolStub.startInterceptingRequests()
-    }
-
     override func tearDownWithError() throws {
         try super.tearDownWithError()
         
-        URLProtocolStub.stopInterceptingRequests()
+        URLProtocolStub.removeStub()
     }
 
     // MARK: - Helpers
@@ -46,12 +40,7 @@ class URLSessionHTTPClientTests: XCTestCase {
             stub = Stub(data: nil, response: nil, error: nil, requestObserver: observer)
         }
         
-        static func startInterceptingRequests() {
-            URLProtocol.registerClass(URLProtocolStub.self)
-        }
-        
-        static func stopInterceptingRequests() {
-            URLProtocol.unregisterClass(URLProtocolStub.self)
+        static func removeStub() {
             stub = nil
         }
         
@@ -99,7 +88,10 @@ class URLSessionHTTPClientTests: XCTestCase {
     }
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
-        let sut = URLSessionHTTPClient()
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [URLProtocolStub.self]
+        let session = URLSession(configuration: configuration)
+        let sut = URLSessionHTTPClient(session: session)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
