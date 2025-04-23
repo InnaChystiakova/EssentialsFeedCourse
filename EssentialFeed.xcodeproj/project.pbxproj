@@ -110,6 +110,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		B30037562DB8F792004E5C25 /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
 		B30D93442D99A9690087082B /* EssentialFeedCacheIntegrationTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EssentialFeedCacheIntegrationTests; sourceTree = "<group>"; };
 		B35BC9F02CDE40A800105FF1 /* EssentialFeedFramework */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B32A12B32CE918BF00770496 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = EssentialFeedFramework; sourceTree = "<group>"; };
 		B3A4F3A82DA050BD00FA35DC /* EssentialFeediOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EssentialFeediOS; sourceTree = "<group>"; };
@@ -212,6 +213,7 @@
 		B332D8362C82023D004B38D1 /* Feed API */ = {
 			isa = PBXGroup;
 			children = (
+				B30037562DB8F792004E5C25 /* Helpers */,
 				B300374D2DB6ED91004E5C25 /* HTTPClientSpy.swift */,
 				B3EFC7B72C62459E002FE031 /* LoadFeedFromRemoteUseCaseTests.swift */,
 				B332D8372C85D203004B38D1 /* URLSessionHTTPClientTests.swift */,
@@ -370,6 +372,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B30037562DB8F792004E5C25 /* Helpers */,
 			);
 			name = EssentialFeedTests;
 			productName = EssentialFeedTests;
