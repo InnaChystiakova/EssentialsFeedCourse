@@ -8,7 +8,7 @@
 import XCTest
 @testable import EssentialFeedFramework
 
-extension CoreDataFeedStore: FeedImageDataStore {
+extension CoreDataFeedStore: @retroactive FeedImageDataStore {
     public func insert(_ data: Data, for: URL, completion: @escaping (FeedImageDataStore.InsertionResult) -> Void) {
     }
     
