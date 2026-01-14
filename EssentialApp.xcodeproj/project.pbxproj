@@ -59,6 +59,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				EssentialAppTests/EssentialAppTests.swift,
+				EssentialAppTests/FeedLoaderWithFallbackCompositeTests.swift,
 				EssentialAppUITests/EssentialAppUITests.swift,
 				EssentialAppUITests/EssentialAppUITestsLaunchTests.swift,
 				Info.plist,
@@ -69,6 +70,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				EssentialAppTests/EssentialAppTests.swift,
+				EssentialAppTests/FeedLoaderWithFallbackCompositeTests.swift,
 			);
 			target = B30037E52DBE8F93004E5C25 /* EssentialAppTests */;
 		};
