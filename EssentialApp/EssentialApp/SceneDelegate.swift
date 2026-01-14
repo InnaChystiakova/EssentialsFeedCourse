@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed")!
+        let url = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed?limit=10")!
+        
         let session = URLSession(configuration: .ephemeral)
         let client = URLSessionHTTPClient(session: session)
         let feedLoader = RemoteFeedLoader(url: url, client: client)
@@ -27,6 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedViewController = FeedUIComposer.feedComposedWith(feedLoader: feedLoader, imageLoader: imageLoader)
         feedViewController.view.backgroundColor = .systemBackground
         window.rootViewController = feedViewController
+        
         self.window = window
         window.makeKeyAndVisible()
     }
