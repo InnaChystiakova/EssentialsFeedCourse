@@ -27,4 +27,26 @@ class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
 }
 
 final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
+    
+    func testInitDoesNotLoadImageData() {
+        let primary = LoaderSpy()
+        let fallback = LoaderSpy()
+        
+        _ = FeedImageDataLoaderWithFallbackComposite(primary: primary, fallback: fallback)
+    }
+    
+    // MARK: - Helpers
+    
+    private class LoaderSpy: FeedImageDataLoader {
+        private class Task: FeedImageDataLoaderTask {
+            func cancel() {
+            }
+        }
+        
+        func loadImageData(from url: URL,
+                           completion: @escaping (FeedImageDataLoader.Result) -> Void
+        ) -> FeedImageDataLoaderTask {
+            return Task()
+        }
+    }
 }
