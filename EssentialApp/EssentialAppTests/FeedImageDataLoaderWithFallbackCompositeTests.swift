@@ -33,6 +33,9 @@ final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
         let fallback = LoaderSpy()
         
         _ = FeedImageDataLoaderWithFallbackComposite(primary: primary, fallback: fallback)
+        
+        XCTAssertTrue(primary.loadedURLs.isEmpty, "Expected no loaded URLs in the primary loader")
+        XCTAssertTrue(fallback.loadedURLs.isEmpty, "Expected no loaded URLs in the fallback loader")
     }
     
     // MARK: - Helpers
