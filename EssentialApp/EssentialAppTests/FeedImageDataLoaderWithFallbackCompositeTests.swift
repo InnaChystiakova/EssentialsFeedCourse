@@ -38,14 +38,18 @@ final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     // MARK: - Helpers
     
     private class LoaderSpy: FeedImageDataLoader {
+        private var messages = [(url: URL, completion: (FeedImageDataLoader.Result) -> Void)]()
+        
+        var loadedURLs: [URL] { messages.map { $0.url } }
+        
         private class Task: FeedImageDataLoaderTask {
-            func cancel() {
-            }
+            func cancel() {}
         }
         
         func loadImageData(from url: URL,
                            completion: @escaping (FeedImageDataLoader.Result) -> Void
         ) -> FeedImageDataLoaderTask {
+            messages.append((url, completion))
             return Task()
         }
     }
