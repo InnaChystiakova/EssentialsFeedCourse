@@ -31,22 +31,16 @@ class FeedImageDataLoaderWithFallbackComposite: FeedImageDataLoader {
 final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     
     func testInitDoesNotLoadImageData() {
-        let primary = LoaderSpy()
-        let fallback = LoaderSpy()
-        
-        _ = FeedImageDataLoaderWithFallbackComposite(primary: primary, fallback: fallback)
-        
-        XCTAssertTrue(primary.loadedURLs.isEmpty, "Expected no loaded URLs in the primary loader")
-        XCTAssertTrue(fallback.loadedURLs.isEmpty, "Expected no loaded URLs in the fallback loader")
+        let (_, primaryLoader, fallbackLoader) = makeSUT()
+                
+        XCTAssertTrue(primaryLoader.loadedURLs.isEmpty, "Expected no loaded URLs in the primary loader")
+        XCTAssertTrue(fallbackLoader.loadedURLs.isEmpty, "Expected no loaded URLs in the fallback loader")
     }
     
     func testLoadImageDataLoadsFromPrimaryLoaderFirst() {
         let url = anyURL()
-        let primaryLoader = LoaderSpy()
-        let fallbackLoader = LoaderSpy()
+        let (sut, primaryLoader, fallbackLoader) = makeSUT()
         
-        let sut = FeedImageDataLoaderWithFallbackComposite(primary: primaryLoader,
-                                                           fallback: fallbackLoader)
         _ = sut.loadImageData(from: url, completion: { _ in })
         
         XCTAssertEqual(primaryLoader.loadedURLs, [url], "Expected to load URL from primary loader")
@@ -54,6 +48,19 @@ final class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: FeedImageDataLoader, primary: LoaderSpy, fallback: LoaderSpy) {
+        let primaryLoader = LoaderSpy()
+        let fallbackLoader = LoaderSpy()
+        let sut = FeedImageDataLoaderWithFallbackComposite(primary: primaryLoader,
+                                                           fallback: fallbackLoader)
+        
+        trackForMemoryLeaks(primaryLoader, file: file, line: line)
+        trackForMemoryLeaks(fallbackLoader, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        
+        return (sut, primaryLoader, fallbackLoader)
+    }
     
     private class LoaderSpy: FeedImageDataLoader {
         private var messages = [(url: URL, completion: (FeedImageDataLoader.Result) -> Void)]()
