@@ -60,6 +60,8 @@
 			membershipExceptions = (
 				EssentialAppTests/EssentialAppTests.swift,
 				EssentialAppTests/FeedLoaderWithFallbackCompositeTests.swift,
+				EssentialAppTests/SharedTestHelpers.swift,
+				"EssentialAppTests/XCTestCase+MemoryLeakTracking.swift",
 				EssentialAppUITests/EssentialAppUITests.swift,
 				EssentialAppUITests/EssentialAppUITestsLaunchTests.swift,
 				Info.plist,
@@ -71,6 +73,8 @@
 			membershipExceptions = (
 				EssentialAppTests/EssentialAppTests.swift,
 				EssentialAppTests/FeedLoaderWithFallbackCompositeTests.swift,
+				EssentialAppTests/SharedTestHelpers.swift,
+				"EssentialAppTests/XCTestCase+MemoryLeakTracking.swift",
 			);
 			target = B30037E52DBE8F93004E5C25 /* EssentialAppTests */;
 		};
