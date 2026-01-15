@@ -58,6 +58,7 @@
 		B3C8F45E2F17BC7E002883B0 /* Exceptions for "EssentialApp" folder in "EssentialApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				EssentialAppTests/FeedImageDataLoaderCacheDecoratorTests.swift,
 				EssentialAppTests/FeedImageDataLoaderWithFallbackCompositeTests.swift,
 				EssentialAppTests/FeedLoaderCacheDecoratorTests.swift,
 				EssentialAppTests/FeedLoaderWithFallbackCompositeTests.swift,
@@ -74,6 +75,7 @@
 		B3C8F4662F17D27E002883B0 /* Exceptions for "EssentialApp" folder in "EssentialAppTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				EssentialAppTests/FeedImageDataLoaderCacheDecoratorTests.swift,
 				EssentialAppTests/FeedImageDataLoaderWithFallbackCompositeTests.swift,
 				EssentialAppTests/FeedLoaderCacheDecoratorTests.swift,
 				EssentialAppTests/FeedLoaderWithFallbackCompositeTests.swift,
