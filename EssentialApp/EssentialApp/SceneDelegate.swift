@@ -17,35 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        
-        let remoteURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed?limit=10")!
-        
-        let remoteClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        let remoteFeedLoader = RemoteFeedLoader(url: remoteURL, client: remoteClient)
-        let remoteImageLoader = RemoteFeedImageDataLoader(client: remoteClient)
-        
-        let localStoreURL = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("feed-store.sqlite")
-
-        let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
-        let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
-        let localImageLoader = LocalFeedImageDataLoader(store: localStore)
-        
-        let feedViewController = FeedUIComposer.feedComposedWith(
-            feedLoader: FeedLoaderWithFallbackComposite(primary:
-                                                            FeedLoaderCacheDecorator(
-                                                                decoratee: remoteFeedLoader,
-                                                                cache: localFeedLoader),
-                                                        fallback: localFeedLoader),
-            imageLoader: FeedImageDataLoaderWithFallbackComposite(primary: remoteImageLoader,
-                                                                  fallback: FeedImageDataLoaderCacheDecorator(
-                                                                    decoratee: remoteImageLoader,
-                                                                    cache: localImageLoader))
-        )
-        window.rootViewController = feedViewController
-        
-        self.window = window
-        window.makeKeyAndVisible()
+    
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

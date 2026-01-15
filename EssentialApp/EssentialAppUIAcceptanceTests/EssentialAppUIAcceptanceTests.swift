@@ -1,6 +1,6 @@
 //
-//  EssentialAppUITests.swift
-//  EssentialAppUITests
+//  EssentialAppUIAcceptanceTests.swift
+//  EssentialAppUIAcceptanceTests
 //
 //  Created by Inna Chystiakova on 27/04/2025.
 //
