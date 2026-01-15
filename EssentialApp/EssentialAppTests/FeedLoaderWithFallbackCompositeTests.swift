@@ -59,8 +59,8 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
                          fallbackResult: FeedLoader.Result,
                          file: StaticString = #file,
                          line: UInt = #line) -> FeedLoader {
-        let primaryLoader = LoaderStub(result: primaryResult)          //RemoteLoaderStub()
-        let fallbackLoader = LoaderStub(result: fallbackResult)        //LocalLoaderStub()
+        let primaryLoader = FeedLoaderStub(result: primaryResult)          //RemoteLoaderStub()
+        let fallbackLoader = FeedLoaderStub(result: fallbackResult)        //LocalLoaderStub()
 
         let sut = FeedLoaderWithFallbackComposite(primary: primaryLoader, fallback: fallbackLoader)
 
@@ -94,18 +94,6 @@ class FeedLoaderWithFallbackCompositeTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
-    }
-    
-    private class LoaderStub: FeedLoader {
-        private let result: FeedLoader.Result
-        
-        init(result: FeedLoader.Result) {
-            self.result = result
-        }
-        
-        func load(completion: @escaping (FeedLoader.Result) -> Void) {
-            completion(result)
-        }
     }
     
     ///Use these stubs to keep order inside the system under test (sut)
