@@ -40,6 +40,16 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
         XCTAssertEqual(loader.loadedURLs, [url], "Expected to load URL from loader")
     }
     
+    func testCancelLoadImageDataCancelsLoaderTaqsk() {
+        let url = anyURL()
+        let (sut, loader) = makeSUT()
+        
+        let task = sut.loadImageData(from: url) { _ in }
+        task.cancel()
+        
+        XCTAssertEqual(loader.cancelledURLs, [url], "Expected to cancel URL loading from loader")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (FeedImageDataLoaderCacheDecorator, LoaderSpy) {
@@ -53,14 +63,18 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
     private class LoaderSpy: FeedImageDataLoader {
         private var messages = [(url: URL, completion: (FeedImageDataLoader.Result) -> Void)]()
         private struct Task : FeedImageDataLoaderTask {
-            func cancel() { }
+            let callback: () -> Void
+            func cancel() { callback() }
         }
         
         var loadedURLs: [URL] { return messages.map { $0.url } }
+        var cancelledURLs = [URL]()
         
         func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
             messages.append((url, completion))
-            return Task()
+            return Task { [weak self] in
+                self?.cancelledURLs.append(url)
+            }
         }
     }
 }
