@@ -68,6 +68,7 @@
 				"EssentialAppTests/Helpers/XCTestCase+FeedImageDataLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+FeedLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+MemoryLeakTracking.swift",
+				EssentialAppTests/SceneDelegateTests.swift,
 				EssentialAppUIAcceptanceTests/EssentialAppUIAcceptanceTests.swift,
 				EssentialAppUIAcceptanceTests/EssentialAppUITestsLaunchTests.swift,
 				Info.plist,
@@ -87,6 +88,7 @@
 				"EssentialAppTests/Helpers/XCTestCase+FeedImageDataLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+FeedLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+MemoryLeakTracking.swift",
+				EssentialAppTests/SceneDelegateTests.swift,
 			);
 			target = B30037E52DBE8F93004E5C25 /* EssentialAppTests */;
 		};
