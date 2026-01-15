@@ -65,6 +65,7 @@
 				EssentialAppTests/Helpers/FeedImageLoaderSpy.swift,
 				EssentialAppTests/Helpers/FeedLoaderStub.swift,
 				EssentialAppTests/Helpers/SharedTestHelpers.swift,
+				"EssentialAppTests/Helpers/XCTestCase+FeedImageDataLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+FeedLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+MemoryLeakTracking.swift",
 				EssentialAppUITests/EssentialAppUITests.swift,
@@ -83,6 +84,7 @@
 				EssentialAppTests/Helpers/FeedImageLoaderSpy.swift,
 				EssentialAppTests/Helpers/FeedLoaderStub.swift,
 				EssentialAppTests/Helpers/SharedTestHelpers.swift,
+				"EssentialAppTests/Helpers/XCTestCase+FeedImageDataLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+FeedLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+MemoryLeakTracking.swift",
 			);
