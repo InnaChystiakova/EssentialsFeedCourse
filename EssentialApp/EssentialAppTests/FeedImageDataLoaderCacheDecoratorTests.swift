@@ -19,7 +19,7 @@ class FeedImageDataLoaderCacheDecorator: FeedImageDataLoader {
     }
     
     func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
-        decoratee.loadImageData(from: url) { _ in }
+        decoratee.loadImageData(from: url, completion: completion)
     }
 }
 
@@ -50,6 +50,15 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
         XCTAssertEqual(loader.cancelledURLs, [url], "Expected to cancel URL loading from loader")
     }
     
+    func testLoadImageDataDeliversDataOnLoaderSuccess() {
+        let imageData = anyData()
+        let (sut, loader) = makeSUT()
+        
+        expect(sut, toCompleteWith: .success(imageData)) {
+            loader.complete(with: imageData)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (FeedImageDataLoaderCacheDecorator, LoaderSpy) {
@@ -58,6 +67,32 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
+    }
+    
+    private func expect(_ sut: FeedImageDataLoader,
+                        toCompleteWith expectedResult: FeedImageDataLoader.Result,
+                        when action: () -> Void,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
+        let exp = expectation(description: "Wait for load completion")
+        
+        _ = sut.loadImageData(from: anyURL()) { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.success(receivedFeed), .success(expectedFeed)):
+                XCTAssertEqual(receivedFeed, expectedFeed, file: file, line: line)
+                
+            case (.failure, .failure):
+                break
+                
+            default:
+                XCTFail("Expected \(expectedResult), got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     private class LoaderSpy: FeedImageDataLoader {
@@ -75,6 +110,10 @@ class FeedImageDataLoaderCacheDecoratorTests: XCTestCase {
             return Task { [weak self] in
                 self?.cancelledURLs.append(url)
             }
+        }
+        
+        func complete(with data: Data, at index: Int = 0) {
+            messages[index].completion(.success(data))
         }
     }
 }
