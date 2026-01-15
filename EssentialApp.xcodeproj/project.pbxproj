@@ -63,6 +63,7 @@
 				EssentialAppTests/FeedLoaderWithFallbackCompositeTests.swift,
 				EssentialAppTests/Helpers/FeedLoaderStub.swift,
 				EssentialAppTests/Helpers/SharedTestHelpers.swift,
+				"EssentialAppTests/Helpers/XCTestCase+FeedLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+MemoryLeakTracking.swift",
 				EssentialAppUITests/EssentialAppUITests.swift,
 				EssentialAppUITests/EssentialAppUITestsLaunchTests.swift,
@@ -78,6 +79,7 @@
 				EssentialAppTests/FeedLoaderWithFallbackCompositeTests.swift,
 				EssentialAppTests/Helpers/FeedLoaderStub.swift,
 				EssentialAppTests/Helpers/SharedTestHelpers.swift,
+				"EssentialAppTests/Helpers/XCTestCase+FeedLoader.swift",
 				"EssentialAppTests/Helpers/XCTestCase+MemoryLeakTracking.swift",
 			);
 			target = B30037E52DBE8F93004E5C25 /* EssentialAppTests */;
